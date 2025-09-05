@@ -63,6 +63,11 @@ function App() {
                 {weatherData && (
                     <div className="weather-data-container">
                         <h2>{weatherData.name}</h2>
+                        <img
+                            src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"
+                            alt="Weather Icon"
+                            className="weather-icon"
+                        />
                         <p className="temperature">
                             {Math.round(weatherData.main.temp)}°C
                         </p>
