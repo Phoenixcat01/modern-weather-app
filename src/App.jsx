@@ -74,6 +74,20 @@ function App() {
                         <p className="description">
                             {weatherData.weather[0].description}
                         </p>
+                        <div className="extra-info">
+                            <div className="info-item">
+                                <p className="info-value">
+                                    {weatherData.main.humidity}%
+                                </p>
+                                <p className="info-label">Humidity</p>
+                            </div>
+                            <div className="info-item">
+                                <p className="info-value">
+                                    {weatherData.wind.speed} m/s
+                                </p>
+                                <p className="info-label">Wind Speed</p>
+                            </div>
+                        </div>
                     </div>
                 )}
             </main>
