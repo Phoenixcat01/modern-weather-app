@@ -64,9 +64,15 @@ function App() {
                     <div className="weather-data-container">
                         <h2>{weatherData.name}</h2>
                         <img
-                            src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"
-                            alt="Weather Icon"
+                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                            alt={weatherData.weather[0].description}
                             className="weather-icon"
+                            onError={(e) => {
+                                console.log(
+                                    "Failed to load weather icon:",
+                                    e.target.src
+                                );
+                            }}
                         />
                         <p className="temperature">
                             {Math.round(weatherData.main.temp)}°C
