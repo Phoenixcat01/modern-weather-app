@@ -9,9 +9,13 @@ const API_KEY = import.meta.env.VITE_API_KEY;
  * @param {object} props - The component props.
  * @param {object} props.coords - The coordinates of the city.
  */
-const WeatherMap = ({ coords }) => {
+const WeatherMap = ({ coords, activeLayer }) => {
     const position = [coords.lat, coords.lon];
-    const cloudsLayerUrl = `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`;
+
+    const layerUrls = {
+        clouds: `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
+        temp: `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${API_KEY}`,
+    };
 
     return (
         <MapContainer
@@ -23,7 +27,7 @@ const WeatherMap = ({ coords }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            <TileLayer url={cloudsLayerUrl} />
+            <TileLayer url={layerUrls[activeLayer]} />
         </MapContainer>
     );
 };

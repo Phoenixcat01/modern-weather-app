@@ -10,6 +10,7 @@ function App() {
     const [city, setCity] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [activeLayer, setActiveLayer] = useState("clouds");
 
     const fetchWeather = async () => {
         setLoading(true);
@@ -95,8 +96,29 @@ function App() {
                                 <p className="info-label">Wind Speed</p>
                             </div>
                         </div>
+                        <div className="layer-controls">
+                            <button
+                                onClick={() => setActiveLayer("clouds")}
+                                className={
+                                    activeLayer === "clouds" ? "active" : ""
+                                }
+                            >
+                                Clouds
+                            </button>
+                            <button
+                                onClick={() => setActiveLayer("temp")}
+                                className={
+                                    activeLayer === "temp" ? "active" : ""
+                                }
+                            >
+                                Temperature
+                            </button>
+                        </div>
                         <div className="map-container">
-                            <WeatherMap coords={weatherData.coord} />
+                            <WeatherMap
+                                coords={weatherData.coord}
+                                activeLayer={activeLayer}
+                            />
                         </div>
                     </div>
                 )}
