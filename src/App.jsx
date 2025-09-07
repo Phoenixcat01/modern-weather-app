@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 import { useState } from "react";
 import "./App.css";
+import WeatherMap from "./components/WeatherMap";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -93,6 +94,9 @@ function App() {
                                 </p>
                                 <p className="info-label">Wind Speed</p>
                             </div>
+                        </div>
+                        <div className="map-container">
+                            <WeatherMap coords={weatherData.coord} />
                         </div>
                     </div>
                 )}
