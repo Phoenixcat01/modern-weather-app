@@ -121,6 +121,14 @@ function App() {
                             >
                                 Wind
                             </button>
+                            <button
+                                onClick={() => setActiveLayer("pressure")}
+                                className={
+                                    activeLayer === "pressure" ? "active" : ""
+                                }
+                            >
+                                Pressure
+                            </button>
                         </div>
                         <div className="map-container">
                             <WeatherMap
