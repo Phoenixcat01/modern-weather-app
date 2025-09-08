@@ -108,17 +108,14 @@ header h1 {
 
 .weather-icon {
   width: 100px;
-  /* Atur ukuran ikon */
   height: 100px;
   margin: -20px auto;
-  /* Sesuaikan posisi ikon */
 }
 
 .extra-info {
   display: flex;
   justify-content: center;
   gap: 30px;
-  /* Jarak antar item info */
   margin-top: 20px;
 }
 
@@ -143,4 +140,43 @@ header h1 {
   text-transform: uppercase;
   color: #f3f3f3;
   margin-top: 5px;
+}
+
+.layer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.layer-controls button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1em;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  backdrop-filter: blur(5px);
+}
+
+.layer-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.layer-controls button.active {
+  background-color: #fff;
+  color: #00f2fe;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
