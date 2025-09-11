@@ -43,108 +43,118 @@ function App() {
             <header>
                 <h1>Modern Weather App</h1>
             </header>
+            <div className="search-box">
+                <input
+                    type="text"
+                    className="search-bar"
+                    placeholder="Enter City name"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    onKeyUp={handleSearch}
+                />
+                <button className="search-button" onClick={handleSearch}>
+                    Search
+                </button>
+            </div>
 
             <main>
-                <div className="search-box">
-                    <input
-                        type="text"
-                        className="search-bar"
-                        placeholder="Enter City name"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        onKeyUp={handleSearch}
-                    />
-                    <button className="search-button" onClick={handleSearch}>
-                        Search
-                    </button>
-                </div>
-
                 {loading && <p>Loading</p>}
                 {error && <p className="error-message">{error}</p>}
 
+                <h2>{weatherData.name}</h2>
                 {weatherData && (
-                    <div className="weather-data-container">
-                        <h2>{weatherData.name}</h2>
-                        <img
-                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                            alt={weatherData.weather[0].description}
-                            className="weather-icon"
-                            onError={(e) => {
-                                console.log(
-                                    "Failed to load weather icon:",
-                                    e.target.src
-                                );
-                            }}
-                        />
-                        <p className="temperature">
-                            {Math.round(weatherData.main.temp)}°C
-                        </p>
-                        <p className="description">
+                    <div className="weather-content">
+                        <div className="current-weather-top">
+                            <div className="current-icon-container">
+                                <img
+                                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                                    alt={weatherData.weather[0].description}
+                                    className="weather-icon"
+                                    onError={(e) => {
+                                        console.log(
+                                            "Failed to load weather icon:",
+                                            e.target.src
+                                        );
+                                    }}
+                                />
+                            </div>
+                            <div className="current-temp-container">
+                                <span className="temperature">
+                                    {Math.round(weatherData.main.temp)}
+                                </span>
+                                <span className="degree-symbol">°</span>
+                                {/* <p className="description">
                             {weatherData.weather[0].description}
-                        </p>
-                        <div className="extra-info">
-                            <div className="info-item">
-                                <p className="info-value">
-                                    {weatherData.main.humidity}%
-                                </p>
-                                <p className="info-label">Humidity</p>
-                            </div>
-                            <div className="info-item">
-                                <p className="info-value">
-                                    {weatherData.wind.speed} m/s
-                                </p>
-                                <p className="info-label">Wind Speed</p>
+                        </p> */}
                             </div>
                         </div>
-                        <div className="layer-controls">
-                            <button
-                                onClick={() => setActiveLayer("clouds")}
-                                className={
-                                    activeLayer === "clouds" ? "active" : ""
-                                }
-                            >
-                                Clouds
-                            </button>
-                            <button
-                                onClick={() => setActiveLayer("temp")}
-                                className={
-                                    activeLayer === "temp" ? "active" : ""
-                                }
-                            >
-                                Temperature
-                            </button>
-                            <button
-                                onClick={() => setActiveLayer("wind")}
-                                className={
-                                    activeLayer === "wind" ? "active" : ""
-                                }
-                            >
-                                Wind
-                            </button>
-                            <button
-                                onClick={() => setActiveLayer("pressure")}
-                                className={
-                                    activeLayer === "pressure" ? "active" : ""
-                                }
-                            >
-                                Pressure
-                            </button>
-                            <button
-                                onClick={() => setActiveLayer("precipitation")}
-                                className={
-                                    activeLayer === "precipitation"
-                                        ? "active"
-                                        : ""
-                                }
-                            >
-                                Precipitation
-                            </button>
+
+                        <div className="additional-info-row">
+                            <div className="additional-icon-item">
+                                <i className="wi wi-humidity"></i>
+                                <p>{weatherData.main.humidity}%</p>
+                            </div>
+                            <div className="additional-icon-item">
+                                <i className="wi wi-strong-wind"></i>
+                                <p>{weatherData.wind.speed} m/s</p>
+                            </div>
                         </div>
-                        <div className="map-container">
-                            <WeatherMap
-                                coords={weatherData.coord}
-                                activeLayer={activeLayer}
-                            />
+
+                        <div className="map-and-controls">
+                            <div className="layer-controls">
+                                <button
+                                    onClick={() => setActiveLayer("clouds")}
+                                    className={
+                                        activeLayer === "clouds" ? "active" : ""
+                                    }
+                                >
+                                    Clouds
+                                </button>
+                                <button
+                                    onClick={() => setActiveLayer("temp")}
+                                    className={
+                                        activeLayer === "temp" ? "active" : ""
+                                    }
+                                >
+                                    Temperature
+                                </button>
+                                <button
+                                    onClick={() => setActiveLayer("wind")}
+                                    className={
+                                        activeLayer === "wind" ? "active" : ""
+                                    }
+                                >
+                                    Wind
+                                </button>
+                                <button
+                                    onClick={() => setActiveLayer("pressure")}
+                                    className={
+                                        activeLayer === "pressure"
+                                            ? "active"
+                                            : ""
+                                    }
+                                >
+                                    Pressure
+                                </button>
+                                <button
+                                    onClick={() =>
+                                        setActiveLayer("precipitation")
+                                    }
+                                    className={
+                                        activeLayer === "precipitation"
+                                            ? "active"
+                                            : ""
+                                    }
+                                >
+                                    Precipitation
+                                </button>
+                            </div>
+                            <div className="map-container">
+                                <WeatherMap
+                                    coords={weatherData.coord}
+                                    activeLayer={activeLayer}
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
