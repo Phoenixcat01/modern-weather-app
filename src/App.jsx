@@ -61,9 +61,9 @@ function App() {
                 {loading && <p>Loading</p>}
                 {error && <p className="error-message">{error}</p>}
 
-                <h2>{weatherData.name}</h2>
                 {weatherData && (
                     <div className="weather-content">
+                        <h2>{weatherData.name}</h2>
                         <div className="current-weather-top">
                             <div className="current-icon-container">
                                 <img
